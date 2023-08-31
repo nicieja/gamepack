@@ -64,8 +64,22 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'pry', '~> 0.14.2'
 end
 
 gem 'rubocop', '~> 1.56'
 
 gem 'rubocop-rails', '~> 2.20'
+
+gem 'ruby-openai', '~> 5.1'
+
+gem 'sidekiq', '~> 7.1'
+
+gem 'prettyid', require: 'pretty_id', github: 'changepack/pretty_id'
+
+gem 'dotenv-rails', groups: %i[development test]
+
+gem 'responders', '~> 3.1'
+
+gem 'tailwindcss-rails', '~> 2.0'
