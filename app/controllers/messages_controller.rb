@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.create!(attributes)
 
-    Response.perform_async(@message.conversation_id)
+    Agent.respond_async(@message.conversation_id)
 
     respond_to do |format|
       format.turbo_stream

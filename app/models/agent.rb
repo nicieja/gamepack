@@ -4,18 +4,28 @@
 # character in a conversation using OpenAI's API. It is a Sidekiq job
 # that is enqueued when a user sends a message to a conversation.
 # It streams the response to the conversation as it is being generated.
-class Response
+class Agent
   include Sidekiq::Job
 
+  class << self
+    alias_method :respond_async, :perform_async
+  end
+
+  # This method is the entry point for the Sidekiq job. It finds the conversation
+  # by its ID and then generates a response from the character using the GPT model.
   def perform(conversation_id)
     conversation = Conversation.find(conversation_id)
     gpt(conversation)
   end
 
+  alias_method :respond, :perform
+
   private
 
+  # This method creates a new message with the role of assistant and empty content.
+  # It then uses the OpenAI client to generate a response for this message.
   def gpt(conversation)
-    message = conversation.messages.create(role: :character, content: '')
+    message = conversation.messages.create(role: :assistant, content: '')
 
     client.chat(
       parameters: {
@@ -27,22 +37,19 @@ class Response
     )
   end
 
+
   def messages(conversation)
     conversation.messages.asc.map do |message|
       {
-        role: roles.fetch(message.role.to_sym),
+        role: message.role,
         content: message.content
       }
     end
   end
 
-  def roles
-    {
-      character: :assistant,
-      user: :user
-    }
-  end
-
+  # This method returns a proc that is used to stream the response from the GPT model.
+  # The proc takes a chunk of the response and the bytesize (which is not used here).
+  # It then updates the content of the message with the new content from the chunk.
   def stream_proc(message)
     proc do |chunk, _bytesize|
       new_content = chunk.dig('choices', 0, 'delta', 'content')
