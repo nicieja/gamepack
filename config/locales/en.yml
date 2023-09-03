@@ -6,13 +6,14 @@ en:
 
       Name: %{name}
       Age: %{age}
-      Languages: %{languages}
+      Appearance: %{appearance}
 
       Backstory: %{backstory}
       Personality: %{personality}
       Location: %{location}
       Relationships: %{relationships}
       Lifestyle: %{lifestyle}
+      Languages: %{languages}
 
       Currently: %{currently}
       Goal: %{goal}

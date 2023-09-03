@@ -13,6 +13,8 @@ class Character < ApplicationRecord
 
   attribute :name, :string
   attribute :age, :integer
+  # Use this to describe the character's physical appearance and clothing
+  attribute :appearance, :string
   # Use natural language to describe the character's proficiency
   # with languages. You can specify multiple languages by separating
   # them with commas.
@@ -42,10 +44,7 @@ class Character < ApplicationRecord
   attribute :samples, :string, array: true, default: -> { [] }
 
   validates :name, presence: true
-  validates :age, presence: true, numericality: { only_integer: true }
-  validates :languages, presence: true
-  validates :backstory, presence: true
-  validates :location, presence: true
+  validates :age, numericality: { only_integer: true }
 
   def to_prompt
     as_json(except: %i[id created_at updated_at samples])

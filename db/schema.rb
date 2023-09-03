@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_03_213146) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_234808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "characters", id: :string, force: :cascade do |t|
     t.string "name", null: false
-    t.integer "age", null: false
-    t.string "location", null: false
-    t.string "languages", null: false
-    t.string "backstory", null: false
+    t.integer "age"
+    t.string "location"
+    t.string "languages"
+    t.string "backstory"
     t.string "personality"
     t.string "lifestyle"
     t.string "relationships"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_213146) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "samples", default: [], null: false, array: true
+    t.string "appearance"
   end
 
   create_table "conversations", id: :string, force: :cascade do |t|
