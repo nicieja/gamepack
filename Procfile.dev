@@ -1,0 +1,4 @@
+web: bundle exec rails server -p 3000
+css: bundle exec rails tailwindcss:watch
+guard: bundle exec guard
+sidekiq: bundle exec sidekiq -C config/sidekiq.yml

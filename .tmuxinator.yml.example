@@ -1,0 +1,15 @@
+# ./.tmuxinator.yml
+
+name: gamepack
+root: ~/
+
+socket_name: gamepack
+
+windows:
+  - gamepack:
+      layout: tiled
+      panes:
+        - bundle exec rails tailwindcss:watch
+        - CYPRESS=1 RAILS_ENV=test bundle exec rails server -p 5017
+        - bundle exec guard
+        - bundle exec sidekiq -C config/sidekiq.yml

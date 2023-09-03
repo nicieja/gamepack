@@ -7,3 +7,7 @@ AllCops:
 Style/Documentation:
   Include:
     - 'app/models/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'

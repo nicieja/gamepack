@@ -83,3 +83,5 @@ gem 'dotenv-rails', groups: %i[development test]
 gem 'responders', '~> 3.1'
 
 gem 'tailwindcss-rails', '~> 2.0'
+
+gem 'guard', '~> 2.18'

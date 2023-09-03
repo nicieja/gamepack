@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# This is the `Character` model. It represents a character in a story.
+# Characters are used to prompt the model to generate dialogue based
+# on their attributes.
 class Character < ApplicationRecord
   key :char
 
