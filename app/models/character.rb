@@ -3,6 +3,11 @@
 # This is the `Character` model. It represents a character in a story.
 # Characters are used to prompt the model to generate dialogue based
 # on their attributes.
+#
+# You'll notice that this model contains a lot of attributes that
+# are strings. We can get away with that because we are using a large
+# language model that can generate text based on a prompt. The prompt
+# can simply contain natural language that describes the character.
 class Character < ApplicationRecord
   key :char
 
