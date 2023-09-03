@@ -5,9 +5,11 @@ en:
 
       Name: %{name}
       Age: %{age}
+      Languages: %{languages}
       Backstory: %{backstory}
       Personality: %{personality}
       Location: %{location}
+      Relationships: %{relationships}
       Currently: %{currently}
       Lifestyle: %{lifestyle}
       Goal: %{goal}

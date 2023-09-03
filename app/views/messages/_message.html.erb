@@ -5,7 +5,7 @@
         <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
           <p class="text-sm"><%= message.content %></p>
         </div>
-        <span class="text-xs text-gray-500 leading-none"><%= message.created_at %></span>
+        <div class="text-xs mt-2 text-gray-500 leading-none text-right"><%= l(message.created_at, format: :short) %></div>
       </div>
     </div>
   <% else %>
@@ -14,7 +14,7 @@
         <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
           <p class="text-sm"><%= message.content %></p>
         </div>
-        <span class="text-xs text-gray-500 leading-none"><%= message.created_at %></span>
+        <div class="text-xs mt-2 text-gray-500 leading-none"><%= l(message.created_at, format: :short) %></div>
       </div>
     </div>
   <% end %>
