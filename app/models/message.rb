@@ -26,6 +26,7 @@ class Message < ApplicationRecord
   validates :content, presence: true
 
   scope :asc, -> { order(created_at: :asc) }
+  scope :visible, -> { where.not(role: :system) }
 
   # We broadcast the message to the conversation after it is created
   # or updated. LLMs take a long time to generate text, so we don't want

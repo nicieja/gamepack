@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   respond_to :html
 
   def show
-    @messages = @conversation.messages.asc
+    @messages = @conversation.messages.visible.asc
     respond_with @conversation
   end
 

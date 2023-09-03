@@ -8,9 +8,16 @@ class Character < ApplicationRecord
 
   attribute :name, :string
   attribute :age, :integer
+  # Use natural language to describe the character's proficiency
+  # with languages. You can specify multiple languages by separating
+  # them with commas.
+  attribute :languages, :string
   attribute :backstory, :string
   attribute :personality, :string
   attribute :lifestyle, :string
+  # `relationships` attribute refers to the character's relationships
+  # with other characters
+  attribute :relationships, :string
   attribute :location, :string
   # `currently` attribute refers to the character's state
   # at the starting point of the story
@@ -25,10 +32,13 @@ class Character < ApplicationRecord
 
   validates :name, presence: true
   validates :age, presence: true, numericality: { only_integer: true }
+  validates :languages, presence: true
   validates :backstory, presence: true
   validates :location, presence: true
 
   def to_prompt
-    as_json except: %i[id created_at updated_at]
+    as_json(
+      except: %i[id created_at updated_at]
+    ).symbolize_keys
   end
 end

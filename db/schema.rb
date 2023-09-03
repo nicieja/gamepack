@@ -17,10 +17,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_092548) do
   create_table "characters", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.integer "age", null: false
+    t.string "location", null: false
+    t.string "languages", null: false
     t.string "backstory", null: false
     t.string "personality"
     t.string "lifestyle"
-    t.string "location", null: false
+    t.string "relationships"
     t.string "currently"
     t.string "goal"
     t.string "requirement"

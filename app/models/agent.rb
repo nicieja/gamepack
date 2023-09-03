@@ -30,7 +30,7 @@ class Agent
     client.chat(
       parameters: {
         temperature: 0.1,
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         stream: stream_proc(message),
         messages: messages(conversation)
       }
