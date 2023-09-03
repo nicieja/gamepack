@@ -1,5 +1,6 @@
 en:
   prompts:
+    ul: "- %{li}\n"
     character: |
       During this conversation, impersonate the character as described below:
 

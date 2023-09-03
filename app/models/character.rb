@@ -15,19 +15,17 @@ class Character < ApplicationRecord
   attribute :backstory, :string
   attribute :personality, :string
   attribute :lifestyle, :string
-  # `relationships` attribute refers to the character's relationships
-  # with other characters
+  # Refer to the character's relationships with other characters
   attribute :relationships, :string
   attribute :location, :string
-  # `currently` attribute refers to the character's state
-  # at the starting point of the story
+  # The character's state at the starting point of the story
   attribute :currently, :string
   attribute :goal, :string
-  # `requirements` attribute refers to the character's
-  # required behavior
+  # Character's required behavior. For example, you may want to force the
+  # character to be polite or to be rude.
   attribute :requirements, :string
-  # `banned_actions` attribute refers to any behavior the character
-  # is prohibited from doing
+  # Any behavior the character is prohibited from doing. For example, you
+  # may want to prevent the character from telling the truth.
   attribute :banned_actions, :string
   # Add samples of the character's dialogue so that the model can learn
   # how the character speaks and generate dialogue based on that
@@ -42,6 +40,6 @@ class Character < ApplicationRecord
   def to_prompt
     as_json(except: %i[id created_at updated_at samples])
       .symbolize_keys
-      .merge(samples: samples.map { |sample| "- #{sample}" }.join("\n"))
+      .merge(samples: samples.map { |li| I18n.t('prompts.ul', li:) }.join)
   end
 end
