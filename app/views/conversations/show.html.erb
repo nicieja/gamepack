@@ -1,18 +1,8 @@
-<div class="mx-auto w-full flex">
-  <div class="mx-auto">
-
-    <div class="bg-white py-8">
-      <div class="mx-auto max-w-lg px-6 ">
-        <ul role="list" class="overflow-y-auto max-h-[48vh] flex flex-col-reverse">
-          <%= turbo_stream_from "#{dom_id(@conversation)}_messages" %>
-          <div id="<%= dom_id(@conversation) %>_messages">
-            <%= render @messages %>
-          </div>
-        </ul>
-
-        <%= render partial: "messages/form", locals: { conversation: @conversation } %>
-      </div>
-    </div>
-
+<div class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+  <%= turbo_stream_from "#{dom_id(@conversation)}_messages" %>
+  <div id="<%= dom_id(@conversation) %>_messages" class="flex flex-col flex-grow h-0 p-4 overflow-auto">
+    <%= render @messages %>
   </div>
+
+  <%= render partial: "messages/form", locals: { conversation: @conversation } %>
 </div>

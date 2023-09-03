@@ -1,11 +1,21 @@
-<div id="<%= dom_id(message) %>_messages">
+<div id="<%= dom_id(message) %>_messages" data-controller="message">
   <% if message.user? %>
-    <div class="bg-sky-400 rounded-lg m-8 text-white p-4">
-      <%= message.content %>
+    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+      <div>
+        <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+          <p class="text-sm"><%= message.content %></p>
+        </div>
+        <span class="text-xs text-gray-500 leading-none"><%= message.created_at %></span>
+      </div>
     </div>
   <% else %>
-    <div class="bg-gray-200 rounded-lg m-8 p-4">
-      <%= message.content %>
+    <div class="flex w-full mt-2 space-x-3 max-w-xs">
+      <div>
+        <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+          <p class="text-sm"><%= message.content %></p>
+        </div>
+        <span class="text-xs text-gray-500 leading-none"><%= message.created_at %></span>
+      </div>
     </div>
   <% end %>
 </div>
