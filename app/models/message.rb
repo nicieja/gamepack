@@ -48,6 +48,8 @@ class Message < ApplicationRecord
   private
 
   def created!
+    return if unbroadcastable?
+
     broadcast_append_later_to(
       identity,
       partial: 'messages/message',
@@ -57,11 +59,23 @@ class Message < ApplicationRecord
   end
 
   def updated!
+    return if unbroadcastable?
+
     broadcast_append_to(
       identity,
       partial: 'messages/message',
       locals: { message: self, scroll_to: true },
       target: identity
     )
+  end
+
+  # We don't want to broadcast system messages to the conversation
+  # because they are not part of the dialogue and are invisible
+  def broadcastable?
+    !system?
+  end
+
+  def unbroadcastable?
+    !broadcastable?
   end
 end
