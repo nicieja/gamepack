@@ -12,13 +12,18 @@ class Character < ApplicationRecord
   # with languages. You can specify multiple languages by separating
   # them with commas.
   attribute :languages, :string
+  # Use this to denote the character's history
   attribute :backstory, :string
+  # Keep `personality` related to the character's personality traits
   attribute :personality, :string
+  # The term `lifestyle` refers to the character's present way of life
   attribute :lifestyle, :string
-  # Refer to the character's relationships with other characters
+  # Refer to the character's relationships with others, both characters
+  # and non-characters
   attribute :relationships, :string
   attribute :location, :string
-  # The character's state at the starting point of the story
+  # The character's particular circumstances and state at the starting point
+  # of the story. For example, they may be in jail.
   attribute :currently, :string
   attribute :goal, :string
   # Character's required behavior. For example, you may want to force the
