@@ -8,7 +8,7 @@ class Agent
   include Sidekiq::Job
 
   class << self
-    alias_method :respond_async, :perform_async
+    alias respond_async perform_async
   end
 
   # This method is the entry point for the Sidekiq job. It finds the conversation
@@ -18,7 +18,7 @@ class Agent
     gpt(conversation)
   end
 
-  alias_method :respond, :perform
+  alias respond perform
 
   private
 
@@ -36,7 +36,6 @@ class Agent
       }
     )
   end
-
 
   def messages(conversation)
     conversation.messages.asc.map do |message|

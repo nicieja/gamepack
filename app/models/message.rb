@@ -5,17 +5,23 @@
 class Message < ApplicationRecord
   key :mg
 
-  # The +role+ attribute determines whether the message is from the
+  # The `role` attribute determines whether the message is from the
   # user or the character. Characters are called "assistants" because
   # we use OpenAI's API to generate their responses. Technically,
   # we are in the chatbot domain, not in the game domain.
-  enum role: { assistant: 0, user: 1 }
+  #
+  # The `system` message helps set the behavior of the assistant.
+  # For example, you can modify the personality of the assistant
+  # or provide specific instructions about how it should behave
+  # throughout the conversation. We use it to set the character's
+  # persona and state at the beginning of the story.
+  enum role: { assistant: 0, user: 1, system: 2 }
   attribute :content
 
   belongs_to :conversation
 
   validates :role, presence: true
-  # Empty strings are valid, but +nil+ is not. This is because we need to save
+  # Empty strings are valid, but `nil` is not. This is because we need to save
   # the message to the database before we can stream it to OpenAI.
   validates :content, presence: true
 
@@ -32,7 +38,8 @@ class Message < ApplicationRecord
 
   # Returns a string that uniquely identifies the messages of a conversation.
   # This string is used as a target for broadcasting messages to the conversation.
-  # The string is composed of the DOM id of the conversation concatenated with "_messages".
+  # The string is composed of the DOM id of the conversation concatenated with
+  # "_messages".
   def identity
     "#{dom_id(conversation)}_messages"
   end

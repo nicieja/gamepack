@@ -11,6 +11,8 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.create!
+
+    seed @conversation, with: system_message
     respond_with @conversation
   end
 
@@ -18,5 +20,16 @@ class ConversationsController < ApplicationController
 
   def set_conversation
     @conversation = Conversation.find params.require(:id)
+  end
+
+  def seed(conversation, with:)
+    return if with.blank?
+
+    conversation.messages.create!(role: :system, content: with)
+  end
+
+  def system_message
+    Character.first
+             .try(:then) { |character| Prompt.character(character) }
   end
 end

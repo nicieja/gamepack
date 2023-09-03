@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Character < ApplicationRecord
   key :char
 
@@ -7,14 +9,14 @@ class Character < ApplicationRecord
   attribute :personality, :string
   attribute :lifestyle, :string
   attribute :location, :string
-  # +currently+ attribute refers to the character's state
+  # `currently` attribute refers to the character's state
   # at the starting point of the story
   attribute :currently, :string
   attribute :goal, :string
-  # +requirement+ attribute refers to the character's
+  # `requirement` attribute refers to the character's
   # required behavior
   attribute :requirement, :string
-  # +ban+ attribute refers to any behavior the character
+  # `ban` attribute refers to any behavior the character
   # is prohibited from doing
   attribute :ban, :string
 
@@ -22,4 +24,8 @@ class Character < ApplicationRecord
   validates :age, presence: true, numericality: { only_integer: true }
   validates :backstory, presence: true
   validates :location, presence: true
+
+  def to_prompt
+    as_json except: %i[id created_at updated_at]
+  end
 end
