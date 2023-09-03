@@ -23,12 +23,15 @@ class Character < ApplicationRecord
   # at the starting point of the story
   attribute :currently, :string
   attribute :goal, :string
-  # `requirement` attribute refers to the character's
+  # `requirements` attribute refers to the character's
   # required behavior
-  attribute :requirement, :string
-  # `ban` attribute refers to any behavior the character
+  attribute :requirements, :string
+  # `banned_actions` attribute refers to any behavior the character
   # is prohibited from doing
-  attribute :ban, :string
+  attribute :banned_actions, :string
+  # Add samples of the character's dialogue so that the model can learn
+  # how the character speaks and generate dialogue based on that
+  attribute :samples, :string, array: true, default: -> { [] }
 
   validates :name, presence: true
   validates :age, presence: true, numericality: { only_integer: true }
@@ -37,8 +40,8 @@ class Character < ApplicationRecord
   validates :location, presence: true
 
   def to_prompt
-    as_json(
-      except: %i[id created_at updated_at]
-    ).symbolize_keys
+    as_json(except: %i[id created_at updated_at samples])
+      .symbolize_keys
+      .merge(samples: samples.map { |sample| "- #{sample}" }.join("\n"))
   end
 end
