@@ -12,8 +12,8 @@ class Prompt
     # character. The character's attributes are passed as arguments, and the method
     # returns a string that is used as a prompt for the assistant. This way,
     # the assistant can behave like the character it needs to impersonate.
-    def character(character)
-      I18n.t('prompts.character', **character.to_prompt)
+    def character(character, language: :en)
+      I18n.t('prompts.character', language:, **character.to_prompt)
     end
   end
 end
