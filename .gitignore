@@ -36,3 +36,6 @@
 
 # Ignore tmuxinator
 .tmuxinator.yml
+
+# Ignore seeds so that users can customize characters
+/db/seeds.rb
