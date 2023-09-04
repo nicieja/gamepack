@@ -28,10 +28,15 @@ class Character < ApplicationRecord
   # Refer to the character's relationships with others, both characters
   # and non-characters
   attribute :relationships, :string
+  # The character's current location. For example, they may be in a
+  # specific city, country, or place like in jail.
   attribute :location, :string
   # The character's particular circumstances and state at the starting point
-  # of the story. For example, they may be in jail.
+  # of the story. For example, they may be suspected of theft.
+  # `currently` differs from `lifestyle` in that it refers to the character's
+  # temporary state, whereas `lifestyle` refers to their permanent state.
   attribute :currently, :string
+  # The character's goal. For example, they may want to escape from jail.
   attribute :goal, :string
   # Character's required behavior. For example, you may want to force the
   # character to be polite or to be rude.
