@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# ConversationsController is responsible for managing conversations.
+# A private method, seed, is used to create a system message in a conversation.
+# The system_message method is used to generate the system message.
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[show]
   respond_to :html

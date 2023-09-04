@@ -3,11 +3,15 @@ require:
 
 AllCops:
   NewCops: enable
-
-Style/Documentation:
-  Include:
-    - 'app/models/**/*'
-
-Metrics/MethodLength:
   Exclude:
+    - 'bin/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
     - 'db/**/*'
+    - 'lib/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - '*.md'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
